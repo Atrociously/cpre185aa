@@ -24,7 +24,7 @@ run buildfile *args:
 
     mkdir -p "{{justfile_directory()}}/target"
     OUTNAME=$(basename {{buildfile}} .c)
-    gcc -o "{{justfile_directory()}}/target/${OUTNAME}" "{{buildfile}}"
+    gcc -o "{{justfile_directory()}}/target/${OUTNAME}" "{{buildfile}}" -lm
     sh -c "{{justfile_directory()}}/target/${OUTNAME}" {{args}}
 
 # prepare the specified file for submission by filling in important details
@@ -43,14 +43,14 @@ prepare buildfile *args:
 
     echo -n "Enter title: "
     read title
-    echo "What were you trying to learn or achieve?"
+    echo -e "\nWhat were you trying to learn or achieve?\n"
     read reflection1_answer
-    echo "Were you successful? Why or Why not?"
+    echo -e "\nWere you successful? Why or Why not?\n"
     read reflection2_answer
-    echo "Would you do anything differently if starting this program over? If so, explain."
+    echo -e "\nWould you do anything differently if starting this program over? If so, explain.\n"
     read reflection3_answer
-    echo "Think about the most important thing you learned when writing this piece of code."
-    echo "What was it and explain why it was significant."
+    echo -e "\nThink about the most important thing you learned when writing this piece of code."
+    echo -e "What was it and explain why it was significant.\n"
     read reflection4_answer
 
     OUTPATH="${OUTDIR}/{{LAST_NAME}}_{{FIRST_NAME}}_AA_Day${daynum}.c"
